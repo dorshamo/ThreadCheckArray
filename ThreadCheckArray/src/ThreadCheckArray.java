@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * ThreadCheckArray class implements a thread that checks whether
+ * there is a subset of numbers in the array whose sum equals 'b'.
+ * Each thread runs a recursive search on part of the array.
+ */
 public class ThreadCheckArray implements Runnable 
 {
 	private boolean flag;
@@ -8,6 +13,10 @@ public class ThreadCheckArray implements Runnable
 	ArrayList<Integer> array;
 	int b;
 	
+	/**
+     * Constructor that initializes shared data and copies array values.
+     * @param sd the shared data object used between threads
+     */
 	public ThreadCheckArray(SharedData sd) 
 	{
 		this.sd = sd;	
@@ -19,6 +28,12 @@ public class ThreadCheckArray implements Runnable
 		winArray = new boolean[array.size()];
 	}
 	
+	/**
+     * Recursive method that checks combinations of array elements
+     * to find if a subset sums to the given value b.
+     * @param n current index
+     * @param b remaining sum to check
+     */
 	void rec(int n, int b)
 	{
 		synchronized (sd) 
@@ -51,7 +66,11 @@ public class ThreadCheckArray implements Runnable
 		}	
 		rec(n-1, b);
 	}
-
+	
+	/**
+     * Runs the thread logic. Starts the recursive process
+     * depending on the thread name and updates shared data if a solution is found.
+     */
 	public void run() {
 		if (array.size() != 1)
 			if (Thread.currentThread().getName().equals("thread1"))
