@@ -1,7 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class for testing the threadCheckArray
+ */
 public class TestThreadCheckArray {
+	/**
+	 * main method for running program
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		try (Scanner input = new Scanner(System.in)) {
 			Thread thread1, thread2;
